@@ -4,9 +4,10 @@ using UnityEngine.InputSystem;
 public class CubeThrower : MonoBehaviour
 {
     [SerializeField] private InputActionReference throwAction;
-    [SerializeField] private float UpForceRange;
+    [SerializeField] private float minUpForceRange;
+    [SerializeField] private float maxUpForceRange;
     [SerializeField] private float sideForceRange;
-    [SerializeField] private float rotationRange;
+    [SerializeField] private float torqueRange;
     private Rigidbody rb;
 
     private bool inProcess;
@@ -33,15 +34,16 @@ public class CubeThrower : MonoBehaviour
         //{
             var dir = new Vector3(
                 Random.Range(-sideForceRange, sideForceRange),
-                Random.Range(0, UpForceRange),
+                Random.Range(minUpForceRange, maxUpForceRange),
                 Random.Range(-sideForceRange, sideForceRange));
-            var rotation = Quaternion.Euler(
-                Random.Range(-rotationRange, rotationRange),
-                Random.Range(-rotationRange, rotationRange),
-                Random.Range(-rotationRange, rotationRange));
+            var applyPos = new Vector3(
+                Random.Range(-torqueRange, torqueRange),
+                Random.Range(-torqueRange, torqueRange),
+                Random.Range(-torqueRange, torqueRange));
 
-            rb.AddForce(dir, ForceMode.Impulse);
-            rb.MoveRotation(rotation);
+        Debug.Log(dir);
+        Debug.Log(applyPos);
+            rb.AddForceAtPosition(dir,applyPos, ForceMode.Impulse);
 
             inProcess=true;
         //}
