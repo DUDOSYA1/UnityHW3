@@ -3142,8 +3142,9 @@ GameObject:
   - component: {fileID: 2084218146}
   - component: {fileID: 2084218145}
   - component: {fileID: 2084218144}
+  - component: {fileID: 2084218147}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3242,6 +3243,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084218142}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2084218147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084218142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437e3c96b32566446bfae83bae529de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointsCounter
+  dices: []
 --- !u!1 &2084744934
 GameObject:
   m_ObjectHideFlags: 0

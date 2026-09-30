@@ -41,8 +41,6 @@ public class CubeThrower : MonoBehaviour
                 Random.Range(-torqueRange, torqueRange),
                 Random.Range(-torqueRange, torqueRange));
 
-        Debug.Log(dir);
-        Debug.Log(applyPos);
             rb.AddForceAtPosition(dir,applyPos, ForceMode.Impulse);
 
             inProcess=true;
