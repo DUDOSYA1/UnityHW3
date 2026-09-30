@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 32343925}
   - component: {fileID: 32343927}
   m_Layer: 0
-  m_Name: Side6
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 646406484}
   - component: {fileID: 646406486}
   m_Layer: 0
-  m_Name: Side2
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,7 +1652,7 @@ GameObject:
   - component: {fileID: 938068953}
   - component: {fileID: 938068955}
   m_Layer: 0
-  m_Name: Side5
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2349,7 +2349,7 @@ GameObject:
   - component: {fileID: 1262270806}
   - component: {fileID: 1262270808}
   m_Layer: 0
-  m_Name: Side3
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2554,7 +2554,7 @@ GameObject:
   - component: {fileID: 1317462970}
   - component: {fileID: 1317462972}
   m_Layer: 0
-  m_Name: Side4
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2723,7 +2723,7 @@ GameObject:
   - component: {fileID: 1598667055}
   - component: {fileID: 1598667057}
   m_Layer: 0
-  m_Name: Side1
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3255,7 +3255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437e3c96b32566446bfae83bae529de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointsCounter
-  dices: []
+  dices:
+  - {fileID: 1213840588}
 --- !u!1 &2084744934
 GameObject:
   m_ObjectHideFlags: 0
