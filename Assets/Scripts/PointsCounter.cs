@@ -9,14 +9,12 @@ public class PointsCounter : MonoBehaviour
     private int diceAmount;
     private int landedCounter;
     private bool shouldChange;
-    private List<GameObject> currSides;
 
     private void Start()
     {
         diceAmount = dices.Length;
         landedCounter=0;
         shouldChange = false;
-        currSides = new List<GameObject>();
 
         foreach (var dice in dices)
             dice.InProcess = false;
@@ -24,48 +22,68 @@ public class PointsCounter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (shouldChange)
+        {
+            foreach (var dice in dices)
+            {
+                var velocity = dice.transform.GetComponent<Rigidbody>().linearVelocity;
+                if (velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f)
+                    return;
+            }
+        }
         if (landedCounter == diceAmount && shouldChange)
         {
             shouldChange = false;
+            SetInProcess(false);
             var sum = 0;
-            Debug.Log(currSides);
-            foreach (var obj in currSides)
+
+            foreach (var dice in dices)
             {
-                switch (obj.name)
+                var maxY = 0f;
+                var topSide = "";
+                for (int i = 0; i < 6; i++)
                 {
-                    case "1": sum += 6; break;
-                    case "2": sum += 4; break;
-                    case "3": sum += 5; break;
-                    case "4": sum += 2; break;
-                    case "5": sum += 3; break;
-                    case "6": sum += 1; break;
+                    var currSide = dice.transform.GetChild(i);
+                    if (currSide.position.y > maxY)
+                    {
+                        topSide = currSide.name;
+                        maxY = currSide.position.y;
+                    }
+                    
+                }
+                switch (topSide)
+                {
+                    case "1": sum += 1; break;
+                    case "2": sum += 2; break;
+                    case "3": sum += 3; break;
+                    case "4": sum += 4; break;
+                    case "5": sum += 5; break;
+                    case "6": sum += 6; break;
                 }
             }
+            Debug.Log("—ÛÏÏ‡:");
             Debug.Log(sum);
+                        
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         landedCounter++;
-        currSides.Add(collision.gameObject);
         shouldChange = true;
-        ChangeInProcessStatus();
-        
+        SetInProcess(true);
     }
 
     private void OnCollisionExit(Collision collision)
     {
         landedCounter--;
-        currSides.Remove(collision.gameObject);
         shouldChange = true;
-        ChangeInProcessStatus();
+        SetInProcess(true);
     }
 
-    private void ChangeInProcessStatus()
+    private void SetInProcess(bool state)
     {
         foreach (var dice in dices)
-            dice.InProcess = !dice.InProcess;
+            dice.InProcess = state;
     }
-
 }

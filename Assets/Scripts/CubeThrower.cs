@@ -30,8 +30,8 @@ public class CubeThrower : MonoBehaviour
 
     private void ThrowCube(InputAction.CallbackContext obj)
     {
-        //if (!inProcess)
-        //{
+        if (!inProcess)
+        {
             var dir = new Vector3(
                 Random.Range(-sideForceRange, sideForceRange),
                 Random.Range(minUpForceRange, maxUpForceRange),
@@ -44,6 +44,6 @@ public class CubeThrower : MonoBehaviour
             rb.AddForceAtPosition(dir,applyPos, ForceMode.Impulse);
 
             inProcess=true;
-        //}
+        }
     }
 }
