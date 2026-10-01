@@ -9,11 +9,23 @@ public class PointsCounter : MonoBehaviour
     private int diceAmount;
     private int landedCounter;
     private bool shouldChange;
+    private int score;
+
+    public int Score
+    {
+        get { return score; }
+        set { }
+    }
 
     private void Start()
     {
+        if(dices.Length == 0)
+        {
+            Debug.LogError("Dices are not included in counter");
+        }
+
         diceAmount = dices.Length;
-        landedCounter=0;
+        landedCounter = 0;
         shouldChange = false;
 
         foreach (var dice in dices)
@@ -22,16 +34,12 @@ public class PointsCounter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (shouldChange)
+        if (shouldChange && IsMoving())
         {
-            foreach (var dice in dices)
-            {
-                var velocity = dice.transform.GetComponent<Rigidbody>().linearVelocity;
-                if (velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f)
-                    return;
-            }
+            return;
         }
-        if (landedCounter == diceAmount && shouldChange)
+
+        if (shouldChange && landedCounter == diceAmount)
         {
             shouldChange = false;
             SetInProcess(false);
@@ -61,9 +69,8 @@ public class PointsCounter : MonoBehaviour
                     case "6": sum += 6; break;
                 }
             }
-            Debug.Log("—ÛÏÏ‡:");
-            Debug.Log(sum);
-                        
+
+            score = sum;
         }
     }
 
@@ -85,5 +92,16 @@ public class PointsCounter : MonoBehaviour
     {
         foreach (var dice in dices)
             dice.InProcess = state;
+    }
+
+    private bool IsMoving()
+    {
+        foreach (var dice in dices)
+        {
+            var velocity = dice.transform.GetComponent<Rigidbody>().linearVelocity;
+            if (velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f)
+                return true;
+        }
+        return false;
     }
 }
