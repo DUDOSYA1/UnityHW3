@@ -7,7 +7,7 @@ public class UIScript : MonoBehaviour
 
     private TextMeshProUGUI text;
 
-    void Start()
+    private void Start()
     {
         if (pc == null)
             Debug.LogError("No PointsCounter attached to UI");
@@ -17,7 +17,7 @@ public class UIScript : MonoBehaviour
             Debug.LogError("No TMP in UI");
     }
 
-    void Update()
+    private void Update()
     {
         text.text = "Score:\n" + pc.Score;
     }
